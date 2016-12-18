@@ -1,0 +1,137 @@
+<div ng-controller="AppCtrl" layout="column" class="wrapper" ng-cloak>
+    <section layout="row" flex>
+
+        <!---------------------LEFT PANEL --------------------------->
+        <md-sidenav class="md-sidenav-left left-sidebar-wrapper" md-component-id="left" md-is-locked-open="true" md-whiteframe="4">
+            <md-content layout-padding class="panel-bg" ng-controller="LeftCtrl">
+                <md-card class="info-user">
+                    <md-card-title class="card-title">
+                        <md-card-title-media class="wrapper-pic">
+                            <div class="md-media-sm card-media pic-box" layout>
+                                <span class="frame">
+                                    <img src="{{account.image_url}}" alt="" height="50" width="50"/>
+                                </span>
+                            </div>
+                        </md-card-title-media>
+                        <md-card-title-text class="user-name-box">
+                            <span class="md-headline user-name">{{account.username}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+                <md-list class="project-list">
+                    <md-list-item class="add-project-menu-item">
+                        <div class="in-box" >
+                            <span class="txt txt-align">Projects</span>
+                            <span ng-click="onOpenProjectPanel()" class="count plus">
+                                <i class="icons8-plus"></i>
+                            </span>
+                        </div>
+                    </md-list-item>
+                    <md-list-item  ng-repeat="item in projects"  ng-click="getTasks(item.Project, $index)"  ng-class="{active: $index == selected}" class="item-menu">
+                        <div class="in-box">
+                            <span class="count" >{{item.Project.task_count}}</span>
+                            <span class="title">{{item.Project.title}}</span>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+            <md-content class="log-out-box">
+                <span layout="row" class="log-out" layout-align="left end">Log out</span>
+            </md-content>
+        </md-sidenav>
+
+        <!---------------------CENTER BOX --------------------------->
+        <md-content flex layout-padding class="main-content-wrapper" layout="column">
+            <md-input-container class="md-block input-search-wrapper">
+                <div class="input-wrapper">
+                    <label for="input_197"></label>
+                    <input name="search" minlength="10" maxlength="100"  id="input_197"  style="">
+                    <span class="icon-search"><i class="icons8-search"></i></span>
+                </div>
+            </md-input-container>
+            <md-button class="md-primary dropdown" ng-click="myDropdownIsActive=!myDropdownIsActive" ng-class="{active:myDropdownIsActive}">
+                <span class="icon-more">
+                    <i class="icons8-more"></i>
+                </span>
+                <ul class="dropdown-menu md-whiteframe-z1">
+                    <li><md-button ng-click="editProject()">Edit project</md-button></li>
+                    <li><md-button ng-click="deleteProject()">Delete project</md-button></li>
+                </ul>
+            </md-button>
+            <!--  SHOW TASKS MARKUP  -->
+            <div ng-if="showNoTasks == false" layout="row" class="container-box">
+                <div flex="21" class="flex-21"></div>
+                <div flex="none" class="content-box">
+                    <md-whiteframe class="md-whiteframe-2dp task-item" flex-sm="100" layout  layout-align="left center" ng-repeat="task in tasks">
+                        <div ng-bind="Task.created_at" class="date"></div>
+                        <md-checkbox ng-model="data.cb1" class="checkbox-task" aria-label="C"></md-checkbox>
+                        <span ng-bind="Task.title"></span>
+                    </md-whiteframe>
+                </div>
+                <div flex="21" class="flex-21"></div>
+            </div>
+            <!--  SHOW EMPTY MESSAGE TASKS MARKUP  -->
+            <div ng-if="showNoTasks == true" class="no-tasks">
+                <span class="icon-box">
+                    <i class="icons8-todo-list"></i>
+                </span>
+                <span class="text">
+                    Have a nice day
+                </span>
+            </div>
+            <md-button ng-click="onOpenTaskPanel()" class="round-btn"  aria-label="Create" >
+                <i class="icons8-plus"></i>
+            </md-button>
+        </md-content>
+
+        <!---------------------RIGHT PANEL --------------------------->
+        <md-sidenav class="md-sidenav-right md-whiteframe-4dp sidenav-wrapper" md-component-id="right">
+            <md-content  ng-controller="RightCtrl"  layout-padding class="right-content">
+                <div ng-if="isTaskMode == false" class="template-wrapper">
+                    <md-toolbar  class="md-theme-light info-title">
+                        <h1 ng-if="createProjectMode == true" class="md-toolbar-tools"  layout-align="center center">
+                        Create new project
+                        </h1>
+                        <h1 ng-if="createProjectMode == false" class="md-toolbar-tools"  layout-align="center center">
+                            Edit project
+                        </h1>
+                        <span class="icon close-sidenav-right" ng-click="close()">
+                             <i class="icons8-delete-2"></i>
+                        </span>
+                        <span class="icon close-sidenav-right escape">ESC</span>
+                    </md-toolbar>
+                    <md-input-container class="input-name">
+                        <label  for="projectNameInput">Project name</label>
+                        <input type="text" id="projectNameInput" class="input-info" ng-model="$parent.projectTitle">
+                    </md-input-container>
+                    <md-button ng-if="createProjectMode == true" ng-click="createNewProject()" class="round-btn" aria-label="Create">
+                        <i class="icons8-checkmark"></i>
+                    </md-button>
+                    <md-button ng-if="createProjectMode == false" ng-click="updateProject()" class="round-btn" aria-label="Create">
+                        <i class="icons8-checkmark"></i>
+                    </md-button>
+                </div>
+
+                <div ng-if="isTaskMode == true" class="template-wrapper">
+                    <md-toolbar  class="md-theme-light info-title">
+                        <h1 class="md-toolbar-tools"  layout-align="center center">Create new task</h1>
+                        <span class="icon close-sidenav-right" ng-click="close()"><i class="icons8-delete-2"></i></span>
+                        <span class="icon close-sidenav-right escape">ESC</span>
+                    </md-toolbar>
+
+                    <md-input-container class="input-name">
+                        <label  for="taskNameInput">Task name</label>
+                        <input type="text" id="taskNameInput" class="input-info" ng-model="$parent.taskTitle">
+                    </md-input-container>
+                    <md-input-container class="input-name">
+                        <label  for="descriptionInput">Description</label>
+                        <input type="text" id="descriptionInput" class="input-info" ng-model="$parent.descriptionTask">
+                    </md-input-container>
+                    <md-button ng-click="createTask()" class="round-btn"  aria-label="Create" >
+                        <i class="icons8-checkmark"></i>
+                    </md-button>
+               </div>
+            </md-content>
+        </md-sidenav>
+    </section>
+</div>
