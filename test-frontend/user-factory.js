@@ -36,8 +36,9 @@ angular.module('testFrontend').factory('sessionFactory', function($q, $http, $co
             var deferred = $q.defer();
             var self = this;
             $http({
-                method: 'GET',
-                url: 'https:api-test-task.decodeapps.io/signup'
+                method: 'POST',
+                url: 'https:api-test-task.decodeapps.io/signup',
+				data: null
             })
                 .success(function(data){
                     sessionId = data.session;
