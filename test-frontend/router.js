@@ -4,7 +4,7 @@ angular.module('testFrontend')
 
         $stateProvider
             .state('home', {
-                url: "/home",
+                url: "#/home",
                 templateUrl: "../home.html",
                 controller: "AppCtrl",
                 resolve: {
@@ -14,5 +14,5 @@ angular.module('testFrontend')
                 }
             });
 
-        $urlRouterProvider.otherwise("/home");
+        $urlRouterProvider.otherwise("#/home");
     });
