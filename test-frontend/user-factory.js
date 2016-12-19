@@ -1,5 +1,5 @@
 
-angular.module('testFrontend').factory('sessionFactory', function($q, $http, $cookieStore){
+angular.module('testFrontend').factory('sessionFactory', function($q, $http, $cookies){
 
     var account = null;
 //    var sessionId = '585070af-a5e8-4ff1-b6e8-5ffcac1f0644';
@@ -9,7 +9,7 @@ angular.module('testFrontend').factory('sessionFactory', function($q, $http, $co
 
         cookiesSession: function() {
             var x = 10;
-            var cookiesSession = $cookieStore.get('session');
+            var cookiesSession = $cookies.get('session');
             if(cookiesSession) {
                 sessionId = cookiesSession;
                 return this.checkSession(sessionId);
@@ -42,7 +42,7 @@ angular.module('testFrontend').factory('sessionFactory', function($q, $http, $co
             })
                 .success(function(data){
                     sessionId = data.session;
-                    $cookieStore.put('session', data.session);
+                    $cookies.put('session', data.session);
                     deferred.resolve(self.getAccount());
                 })
                 .error(function() {
