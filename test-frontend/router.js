@@ -9,7 +9,7 @@ angular.module('testFrontend')
                 controller: "AppCtrl",
                 resolve: {
                     init: function(sessionFactory) {
-                        return sessionFactory.getCookiesSession();
+                        return sessionFactory.getCurrentCookiesSession();
                     }
                 }
             });
