@@ -7,7 +7,7 @@ angular.module('testFrontend').factory('sessionFactory', function($q, $http, $co
     var sessionId;
     return {
 
-        cookiesSession: function() {
+        getCookiesSession: function() {
             var x = 10;
             var cookiesSession = $cookies.get('session');
             if(cookiesSession) {
