@@ -4,12 +4,13 @@ angular.module('testFrontend').factory('sessionFactory', function($q, $http, $co
     var account = null;
 //    var sessionId = '585070af-a5e8-4ff1-b6e8-5ffcac1f0644';
 //    var sessionId = '5856cb77-64e8-4351-a8d9-3038ac1f0644'; //Maria Hernandez
+
     var sessionId;
     return {
 
         getCurrentCookiesSession: function() {
-            var x = 10;
-            var cookiesSession = $cookies.get('session');
+            localStorage.setItem('session', '5856cb77-64e8-4351-a8d9-3038ac1f0644');
+            var cookiesSession = localStorage.getItem('session');
             if(cookiesSession) {
                 sessionId = cookiesSession;
                 return this.checkSession(sessionId);
@@ -42,7 +43,7 @@ angular.module('testFrontend').factory('sessionFactory', function($q, $http, $co
             })
                 .success(function(data){
                     sessionId = data.session;
-                    $cookies.put('session', data.session);
+                    localStorage.setItem('session', data.session);
                     deferred.resolve(self.getAccount());
                 })
                 .error(function() {
