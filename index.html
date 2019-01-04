@@ -7,103 +7,103 @@
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body ng-app="testFrontend">
-        <div ui-view class="ui-wrapper">
-            <div class="loading">
-                <span class="txt">LOADING</span>
-            </div>
-        </div>
-        <!--<div ng-controller="AppCtrl" layout="column" class="wrapper" ng-cloak>-->
-            <!--<section layout="row" flex>-->
-
-                <!--<md-sidenav-->
-                        <!--class="md-sidenav-left left-sidebar-wrapper"-->
-                        <!--md-component-id="left"-->
-                        <!--md-is-locked-open="true"-->
-                        <!--md-whiteframe="4">-->
-
-                    <!--<md-content layout-padding ng-controller="LeftCtrl">-->
-                        <!--&lt;!&ndash;<md-button ng-click="close()" class="md-primary" hide-gt-md>&ndash;&gt;-->
-                            <!--&lt;!&ndash;Close Sidenav Left&ndash;&gt;-->
-                        <!--&lt;!&ndash;</md-button>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<p hide show-gt-md>&ndash;&gt;-->
-                            <!--&lt;!&ndash;This sidenav is locked open on your device. To go back to the default behavior,&ndash;&gt;-->
-                            <!--&lt;!&ndash;narrow your display.&ndash;&gt;-->
-                        <!--&lt;!&ndash;</p>&ndash;&gt;-->
-
-                        <!--<div class="xxxxx" style="height: 80px;">-->
-                            <!--<div class="pic-box">-->
-                                <!--<img src="{{account.image_url}}" alt=""/>-->
-                            <!--</div>-->
-                            <!--<span class="name">{{account.username}}</span>-->
-                        <!--</div>-->
-
-                        <!--<md-list>-->
-                            <!--<md-list-item class="md-2-line" ng-repeat="item in menuItems">-->
-                                <!--<div class="md-list-item-text">-->
-                                    <!--<span class="txt">{{item.name}}</span>-->
-                                    <!--<span class="count">{{item.count}}</span>-->
-                                <!--</div>-->
-                            <!--</md-list-item>-->
-                        <!--</md-list>-->
-
-                    <!--</md-content>-->
-
-                    <!--<span layout="row" layout-align="center end">Log out</span>-->
-
-                <!--</md-sidenav>-->
-
-                <!--<md-content flex layout-padding class="main-content-wrapper">-->
-
-                    <!--<div layout="column" layout-align="top center">-->
-                        <!--<p>-->
-                            <!--The left sidenav will 'lock open' on a medium (>=960px wide) device.-->
-                        <!--</p>-->
-                        <!--<p>-->
-                            <!--The right sidenav will focus on a specific child element.-->
-                        <!--</p>-->
-
-                        <!--<div>-->
-                            <!--<md-button ng-click="toggleLeft()"-->
-                                       <!--class="md-primary" hide-gt-md>-->
-                                <!--Toggle left-->
-                            <!--</md-button>-->
-                        <!--</div>-->
-
-                        <!--<div>-->
-                            <!--<md-button ng-click="toggleRight()"-->
-                                       <!--ng-hide="isOpenRight()"-->
-                                       <!--class="md-primary">-->
-                                <!--Toggle right-->
-                            <!--</md-button>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-                    <!--<div flex></div>-->
-
-                <!--</md-content>-->
-
-                <!--<md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">-->
-
-                    <!--<md-toolbar class="md-theme-light">-->
-                        <!--<h1 class="md-toolbar-tools">Sidenav Right</h1>-->
-                    <!--</md-toolbar>-->
-                    <!--<md-content ng-controller="RightCtrl" layout-padding>-->
-                        <!--<form>-->
-                            <!--<md-input-container>-->
-                                <!--<label for="testInput">Test input</label>-->
-                                <!--<input type="text" id="testInput"-->
-                                       <!--ng-model="data" md-autofocus>-->
-                            <!--</md-input-container>-->
-                        <!--</form>-->
-                        <!--<md-button ng-click="close()" class="md-primary">-->
-                            <!--Close Sidenav Right-->
-                        <!--</md-button>-->
-                    <!--</md-content>-->
-
-                <!--</md-sidenav>-->
-
-            <!--</section>-->
+        <!--<div ui-view class="ui-wrapper">-->
+            <!--<div class="loading">-->
+                <!--<span class="txt">LOADING</span>-->
+            <!--</div>-->
         <!--</div>-->
+        <div ng-controller="AppCtrl" layout="column" class="wrapper" ng-cloak>
+            <section layout="row" flex>
+
+                <md-sidenav
+                        class="md-sidenav-left left-sidebar-wrapper"
+                        md-component-id="left"
+                        md-is-locked-open="true"
+                        md-whiteframe="4">
+
+                    <md-content layout-padding ng-controller="LeftCtrl">
+                        <!--<md-button ng-click="close()" class="md-primary" hide-gt-md>-->
+                            <!--Close Sidenav Left-->
+                        <!--</md-button>-->
+                        <!--<p hide show-gt-md>-->
+                            <!--This sidenav is locked open on your device. To go back to the default behavior,-->
+                            <!--narrow your display.-->
+                        <!--</p>-->
+
+                        <div class="xxxxx" style="height: 80px;">
+                            <div class="pic-box">
+                                <img src="{{account.image_url}}" alt=""/>
+                            </div>
+                            <span class="name">{{account.username}}</span>
+                        </div>
+
+                        <md-list>
+                            <md-list-item class="md-2-line" ng-repeat="item in menuItems">
+                                <div class="md-list-item-text">
+                                    <span class="txt">{{item.name}}</span>
+                                    <span class="count">{{item.count}}</span>
+                                </div>
+                            </md-list-item>
+                        </md-list>
+
+                    </md-content>
+
+                    <span layout="row" layout-align="center end">Log out</span>
+
+                </md-sidenav>
+
+                <md-content flex layout-padding class="main-content-wrapper">
+
+                    <div layout="column" layout-align="top center">
+                        <p>
+                            The left sidenav will 'lock open' on a medium (>=960px wide) device.
+                        </p>
+                        <p>
+                            The right sidenav will focus on a specific child element.
+                        </p>
+
+                        <div>
+                            <md-button ng-click="toggleLeft()"
+                                       class="md-primary" hide-gt-md>
+                                Toggle left
+                            </md-button>
+                        </div>
+
+                        <div>
+                            <md-button ng-click="toggleRight()"
+                                       ng-hide="isOpenRight()"
+                                       class="md-primary">
+                                Toggle right
+                            </md-button>
+                        </div>
+                    </div>
+
+                    <div flex></div>
+
+                </md-content>
+
+                <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+
+                    <md-toolbar class="md-theme-light">
+                        <h1 class="md-toolbar-tools">Sidenav Right</h1>
+                    </md-toolbar>
+                    <md-content ng-controller="RightCtrl" layout-padding>
+                        <form>
+                            <md-input-container>
+                                <label for="testInput">Test input</label>
+                                <input type="text" id="testInput"
+                                       ng-model="data" md-autofocus>
+                            </md-input-container>
+                        </form>
+                        <md-button ng-click="close()" class="md-primary">
+                            Close Sidenav Right
+                        </md-button>
+                    </md-content>
+
+                </md-sidenav>
+
+            </section>
+        </div>
         <footer>
 
         </footer>
